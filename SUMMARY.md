@@ -1,8 +1,11 @@
 # Table of contents
 
-* [Tech Stack](README.md)
-  * [Page 2](tech-stack/page-2.md)
-  * [Page 1](tech-stack/page-1/README.md)
-    * [Page 3](tech-stack/page-1/page-3.md)
-    * [Page 4](tech-stack/page-1/page-4/README.md)
-      * [Page 5](tech-stack/page-1/page-4/page-5.md)
+* [DSA](README.md)
+* [Tech Stack](<README (1).md>)
+  * [Language](tech-stack/language.md)
+  * [Framework](tech-stack/framework.md)
+  * [Memory Management](tech-stack/memory-management.md)
+* [Low Level Design](low-level-design.md)
+* [High Level Design](high-level-design.md)
+* [Design Questions](design-questions.md)
+* [Projects](projects.md)
