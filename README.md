@@ -1,2 +1,6 @@
-# scaler-learnings
-This is the space for the coursework @ Scaler.
+---
+description: Language, Framework, Memory Management - Over the weekend Interview questions
+---
+
+# Tech Stack
+
