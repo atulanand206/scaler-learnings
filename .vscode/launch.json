@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-Main<v1>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.atul.scaler.learn.Main",
+      "projectName": "v1",
+      "args": ""
+    }
+  ]
+}
