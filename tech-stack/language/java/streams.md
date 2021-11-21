@@ -14,6 +14,20 @@ Stream<Integer> streamOfIntegers(int n, int x) {
 }
 ```
 
+Instead of using an Infinite Stream, we can also create an `IntStream` using the `range` method. This is the replacement of the for loop that we've been writing since forever.
+
+```java
+ // Omits the end value from the result.
+ IntStream streamRange(int start, int end) {
+   return IntStream.range(start, end);
+ }
+ 
+ // Includes the end value in the result.
+ IntStream streamRangeClosed(int start, int end) {
+  return IntStream.rangeClosed(start, end);
+}
+```
+
 ### 2. Create a stream from an array
 
 Arrays provide an API to create an `IntStream` from an `int` array. Similar API is available for `long`, `double` & `object` as well.
@@ -37,6 +51,33 @@ Collection interface provides a `stream()` method to easily convert a list into 
    return list.stream();
  }
 ```
+
+### 4. Multiply all the numbers with a fixed number in a stream&#x20;
+
+For applying an operation to all elements in a Stream, we leverage the map function provided by the Streams API.
+
+Map function is a transformation function which takes in a value and a transformation lambda expression and return the transformed result.&#x20;
+
+The type of input and output can be different.&#x20;
+
+There will be equal no of elements in input and output.
+
+```java
+Stream<Integer> multiply(Stream<Integer> input, int factor) {
+    return input.map(e -> e * factor);
+}
+
+```
+
+### 5. Multiply all the numbers with one less than the number in a stream&#x20;
+
+```java
+Stream<Integer> multiplyWithOneLess(Stream<Integer> input) {
+    return input.map(e -> e * (e - 1));
+}
+```
+
+
 
 ## Errors
 
