@@ -1,6 +1,7 @@
 # Table of contents
 
 * [DSA](README.md)
+  * [Interesting Snippets](readme/interesting-snippets.md)
 * [Tech Stack](<README (1).md>)
   * [Language](tech-stack/language/README.md)
     * [Java](tech-stack/language/java/README.md)
