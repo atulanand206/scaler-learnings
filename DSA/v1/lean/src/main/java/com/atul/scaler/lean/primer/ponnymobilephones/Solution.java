@@ -1,9 +1,11 @@
 package com.atul.scaler.lean.primer.ponnymobilephones;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Problem: Little pony is going to buy some mobile phones for his friends. As there many models
@@ -66,37 +68,29 @@ public class Solution {
     return hashMap(A, B);
   }
 
+  private Stream<Integer> listOfSums(int[] A) {
+    int[] prefixSum = A.clone();
+    Arrays.parallelPrefix(prefixSum, Integer::sum);
+    return Arrays.stream(prefixSum).boxed().sorted();
+  }
+
   private int[] hashMap(int[] A, int[] B) {
-    List<Integer> list = listOfSums(A);
+    List<Integer> list = listOfSums(A).collect(Collectors.toList());
+    return Arrays.stream(B).parallel().map(e -> findCount(list, e)).toArray();
+  }
 
-    Map<Integer, Integer> map = new HashMap<>();
-    for (int i = 0; i < list.get(0); i++) map.put(i, 0);
-    for (int i = 0; i < list.size() - 1; i++)
-      for (int j = list.get(i); j < list.get(i + 1); j++) map.put(j, i + 1);
-    map.put(map.size(), list.size());
-
-    int[] result = new int[B.length];
-    for (int i = 0; i < B.length; i++)
-      result[i] = (B[i] > map.size()) ? list.size() : map.get(B[i]);
-    return result;
+  private int findCount(List<Integer> list, int e) {
+    Optional<Integer> val = list.stream().filter(x -> x >= e).findFirst();
+    if (!val.isPresent()) return (int) list.size();
+    return IntStream.range(0, list.size())
+        .filter(userInd -> list.get(userInd).equals(val.get()))
+        .findFirst()
+        .getAsInt();
   }
 
   private int[] binarySearch(int[] A, int[] B) {
-    List<Integer> list = listOfSums(A);
-
-    int[] result = new int[B.length];
-    for (int i = 0; i < B.length; i++) result[i] = lowerBound(list, B[i]);
-    return result;
-  }
-
-  private List<Integer> listOfSums(int[] A) {
-    List<Integer> list = new ArrayList<>();
-    list.add(A[0]);
-    for (int i = 1; i < A.length; i++) {
-      if (list.get(list.size() - 1) + A[i] > Integer.MAX_VALUE) break;
-      list.add(list.get(list.size() - 1) + A[i]);
-    }
-    return list;
+    List<Integer> list = listOfSums(A).collect(Collectors.toList());
+    return Arrays.stream(B).parallel().map(x -> lowerBound(list, x)).toArray();
   }
 
   private int lowerBound(List<Integer> list, int value) {
