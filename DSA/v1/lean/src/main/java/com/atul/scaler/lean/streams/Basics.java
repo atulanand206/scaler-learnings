@@ -23,4 +23,20 @@ public class Basics {
   Stream<String> streamFromStringList(List<String> list) {
     return list.stream();
   }
+
+  IntStream streamRange(int start, int end) {
+    return IntStream.range(start, end);
+  }
+
+  IntStream streamRangeClosed(int start, int end) {
+    return IntStream.rangeClosed(start, end);
+  }
+
+  Stream<Integer> multiply(Stream<Integer> input, int factor) {
+    return input.map(e -> e * factor);
+  }
+
+  Stream<Integer> multiplyWithOneLess(Stream<Integer> input) {
+    return input.map(e -> e * (e - 1));
+  }
 }

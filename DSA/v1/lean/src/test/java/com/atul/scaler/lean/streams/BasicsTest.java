@@ -57,4 +57,56 @@ public class BasicsTest {
   void testStringListStream(List<String> n, int count) {
     assertEquals(count, basics.streamFromStringList(n).count());
   }
+
+  static Stream<Arguments> rangeArguments() {
+    return Stream.of(Arguments.of(5, 20, 15), Arguments.of(10, 15, 5), Arguments.of(100, 150, 50));
+  }
+
+  @ParameterizedTest
+  @MethodSource("rangeArguments")
+  void testRange(int start, int end, int count) {
+    assertEquals(count, basics.streamRange(start, end).count());
+    assertEquals(start, basics.streamRange(start, end).findFirst().getAsInt());
+  }
+
+  static Stream<Arguments> rangeCArguments() {
+    return Stream.of(Arguments.of(5, 20, 16), Arguments.of(10, 15, 6), Arguments.of(100, 150, 51));
+  }
+
+  @ParameterizedTest
+  @MethodSource("rangeCArguments")
+  void testRangeC(int start, int end, int count) {
+    assertEquals(count, basics.streamRangeClosed(start, end).count());
+    assertEquals(start, basics.streamRangeClosed(start, end).findFirst().getAsInt());
+  }
+
+  static Stream<Arguments> mapArguments() {
+    return Stream.of(
+        Arguments.of(Stream.of(4, 5, 6), 3, Stream.of(12, 15, 18)),
+        Arguments.of(Stream.of(12, 7, 16), 5, Stream.of(60, 35, 80)));
+  }
+
+  @ParameterizedTest
+  @MethodSource("mapArguments")
+  void testMapCount(Stream<Integer> input, int factor, Stream<Integer> output) {
+    assertEquals(output.count(), basics.multiply(input, factor).count());
+  }
+
+  @ParameterizedTest
+  @MethodSource("mapArguments")
+  void testMapValue(Stream<Integer> input, int factor, Stream<Integer> output) {
+    assertEquals(output.findFirst(), basics.multiply(input, factor).findFirst());
+  }
+
+  static Stream<Arguments> oneLessArguments() {
+    return Stream.of(
+        Arguments.of(Stream.of(4, 5, 6), Stream.of(12, 20, 30)),
+        Arguments.of(Stream.of(12, 7, 16), Stream.of(132, 42, 240)));
+  }
+
+  @ParameterizedTest
+  @MethodSource("oneLessArguments")
+  void testOneLess(Stream<Integer> input, Stream<Integer> output) {
+    assertEquals(output.count(), basics.multiplyWithOneLess(input).count());
+  }
 }
