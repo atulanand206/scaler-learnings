@@ -5,6 +5,7 @@
   * [Language](tech-stack/language/README.md)
     * [Java](tech-stack/language/java/README.md)
       * [Lambda Expressions](tech-stack/language/java/lambda-expressions.md)
+      * [Streams](tech-stack/language/java/streams.md)
   * [Framework](tech-stack/framework/README.md)
     * [Spring boot](tech-stack/framework/spring-boot/README.md)
       * [application.properties](tech-stack/framework/spring-boot/application.properties.md)
