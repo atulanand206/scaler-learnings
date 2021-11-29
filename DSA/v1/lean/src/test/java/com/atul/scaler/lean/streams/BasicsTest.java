@@ -1,6 +1,7 @@
 package com.atul.scaler.lean.streams;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -108,5 +109,17 @@ public class BasicsTest {
   @MethodSource("oneLessArguments")
   void testOneLess(Stream<Integer> input, Stream<Integer> output) {
     assertEquals(output.count(), basics.multiplyWithOneLess(input).count());
+  }
+
+  static Stream<Arguments> prefixSumArguments() {
+    return Stream.of(
+        Arguments.of(Stream.of(4, 5, 6), Stream.of(4, 9, 15)),
+        Arguments.of(Stream.of(12, 7, 16), Stream.of(12, 19, 35)));
+  }
+
+  @ParameterizedTest
+  @MethodSource("prefixSumArguments")
+  void testPrefixSum(Stream<Integer> input, Stream<Integer> output) {
+    assertTrue(Basics.equalStreams(output, basics.prefixSumStream(input)));
   }
 }

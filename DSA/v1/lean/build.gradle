@@ -20,6 +20,9 @@ repositories {
 }
 
 dependencies {
+	// https://mvnrepository.com/artifact/commons-collections/commons-collections
+	implementation 'commons-collections:commons-collections:3.2.2'
+	testImplementation 'commons-collections:commons-collections:3.2.2'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
