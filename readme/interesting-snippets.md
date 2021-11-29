@@ -43,3 +43,29 @@ public String vowelsOnly(String A) {
         .collect(Collectors.joining());
 }
 ```
+
+### 4. Print a 2D array with each cell of fixed width and text aligned right in each cell.
+
+This is a multi-step process. Each integer value will have to be converted into a string of fixed width giving us a 2D string array. `Arrays.toString` is a powerful utility to convert an array into a comma separated String. Extending it for each element and printing each element in a line shows the whole matrix.
+Each step can be extracted out separately with the help of Lambda functions provided in the `java.util` package. A method which returns a function is also known as a higher order function. The `map` operation takes a function as the parameter and performs the desired action. 
+We can simply use a `forEach` in the end to print the matrix to the console.
+
+```java
+public static void print2dArray(int[][] array, int width) {
+    String pattern = "%" + width + "s";
+    Arrays.stream(array)
+					.map(formatRow(pattern))
+					.map(Arrays::toString)
+					.forEach(System.out::println);
+}
+
+private static Function<? super int[], ? extends Object[]> formatRow(String pattern) {
+    return row -> Arrays.stream(row)
+												.mapToObj(formatCell(pattern))
+												.toArray();
+}
+
+private static IntFunction<? extends String> formatCell(String pattern) {
+    return cell -> String.format(pattern, cell);
+}
+```
