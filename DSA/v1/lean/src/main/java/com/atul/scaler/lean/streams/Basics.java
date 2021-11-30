@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.IntFunction;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -64,5 +66,19 @@ public class Basics {
       if (is.stream().map(Iterator::next).distinct().limit(2).count() > 1) return false;
 
     return is.stream().noneMatch(Iterator::hasNext);
+  }
+
+  public static void print2dArray(int[][] array, int width) {
+    String pattern = "%" + width + "s";
+    Arrays.stream(array).map(formatRow(pattern)).map(Arrays::toString).forEach(System.out::println);
+    System.out.println("---");
+  }
+
+  private static Function<? super int[], ? extends Object[]> formatRow(String pattern) {
+    return row -> Arrays.stream(row).mapToObj(formatCell(pattern)).toArray();
+  }
+
+  private static IntFunction<? extends String> formatCell(String pattern) {
+    return cell -> String.format(pattern, cell);
   }
 }
