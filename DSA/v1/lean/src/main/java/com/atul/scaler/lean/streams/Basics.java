@@ -81,4 +81,11 @@ public class Basics {
   private static IntFunction<? extends String> formatCell(String pattern) {
     return cell -> String.format(pattern, cell);
   }
+
+  public static List<Integer> fm(int[] nums) {
+    return IntStream.range(0, nums.length)
+        .boxed()
+        .flatMap(i -> IntStream.range(i, nums.length).boxed().map(j -> nums[i] + nums[j]))
+        .collect(Collectors.toList());
+  }
 }
