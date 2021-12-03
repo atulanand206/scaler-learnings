@@ -71,19 +71,49 @@ Stream<Integer> multiply(Stream<Integer> input, int factor) {
 
 ### 5. Multiply all the numbers with one less than the number in a stream&#x20;
 
+Streams API provides a `map()` method which is used to transform an element and store the result in the same order.
+
 ```java
 Stream<Integer> multiplyWithOneLess(Stream<Integer> input) {
     return input.map(e -> e * (e - 1));
 }
 ```
 
+### 6.  Find the distinct integers of an array in sorted order
 
+Streams API provides `sorted()` which is used to sort a stream. You can pass custom `Comparator` to sort according to requirement. `Comparator` provides some type inferred comparators which work on all types implementing the `Comparable` interface like `Comparator.reverseOrder()` which reverses a stream of integers or strings as it should without specifying the type as it is inferred from the stream.
+
+Stream API provides `distinct()` method which only allows one instance of each value in the resultant stream.
+
+```java
+public int[] distinctSorted(int[] n) {
+    return Arrays.stream(n)
+        .sorted()
+        .distinct()
+        .toArray();
+}
+```
+
+### 7. Find the largest difference between consecutive elements oof an array.
+
+Assuming there are at least 2 elements in the array, the following method would&#x20;
+
+```java
+public int maxConsecutiveDistance(int[] points) {
+    return IntStream.range(1, points.length)
+        .boxed()
+        .map(i -> points[i] - points[i-1])
+        .sorted(Comparator.reverseOrder())
+        .findFirst()
+        .orElse(0);
+}
+```
 
 ## Errors
 
 ### 1.  Stream has already been operated upon or closed.
 
-As streams follow the principles of immutability, stream pipeline can't be shared midway. Like in the following example, `forEach `is separately called after `count` which the Streams don't allow.
+As streams follow the principles of immutability, stream pipeline can't be shared midway. Like in the following example, `forEach` is separately called after `count` which the Streams don't allow.
 
 ```java
 Stream<Integer> stream = streamOfIntegers(n);
