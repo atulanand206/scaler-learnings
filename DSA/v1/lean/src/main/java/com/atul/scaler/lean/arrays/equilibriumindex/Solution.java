@@ -66,7 +66,6 @@ public class Solution {
                     (a, b) -> {
                       throw new UnsupportedOperationException();
                     }));
-    System.out.println(pref + " " + sum + " \n");
     return IntStream.range(1, A.size() - 1)
         .boxed()
         .filter(i -> (A.get(i) + 2 * pref.get(i - 1) == sum))
