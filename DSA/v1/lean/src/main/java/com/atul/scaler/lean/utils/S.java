@@ -8,6 +8,14 @@ public class S {
     return val + "\n";
   }
 
+  public static String binaryString(int val) {
+    return String.format("%" + 32 + "s ", Integer.toBinaryString(val));
+  }
+
+  public static String binaryString(long val) {
+    return String.format("%" + 32 + "s ", Long.toBinaryString(val));
+  }
+
   public static String string(int[] array) {
     StringBuilder sb = new StringBuilder();
     openingBracket(sb);

@@ -1,8 +1,5 @@
 package com.atul.scaler.lean.bitmanipulation.diffbitspairwisesum;
 
-import com.atul.scaler.lean.utils.O;
-import com.atul.scaler.lean.utils.S;
-
 /**
  * Problem: We define f(X, Y) as number of different corresponding bits in binary representation of
  * X and Y.

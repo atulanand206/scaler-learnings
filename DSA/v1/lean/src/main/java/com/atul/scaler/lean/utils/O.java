@@ -25,7 +25,7 @@ public class O {
   }
 
   public static void debug(String text) {
-    debug(text, true);
+    print(text);
   }
 
   public static void debug(String text, boolean append) {
