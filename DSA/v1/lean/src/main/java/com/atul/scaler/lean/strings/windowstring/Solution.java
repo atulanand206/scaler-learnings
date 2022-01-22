@@ -4,10 +4,6 @@ import static com.atul.scaler.lean.utils.O.attach;
 import static com.atul.scaler.lean.utils.O.debug;
 import static com.atul.scaler.lean.utils.S.string;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 /** @author atulanand */
 public class Solution {
 
@@ -30,13 +26,12 @@ public class Solution {
     while (right < chs.length) {
       while (right < chs.length && total >= 0) {
         debug(string(right));
-//        System.out.println(total);
+        //        System.out.println(total);
         int ch = of(chs[right]);
         if (fin[ch]) {
           freq[ch]--;
           System.out.println(freq[ch] + " " + total);
-          if (freq[ch] == 0 || freq[ch] == -1)
-            total--;
+          if (freq[ch] == 0 || freq[ch] == -1) total--;
           AHash = hashChange(pows, AHash, chs[right], 1);
           if (AHash == BHash) {
             found = true;
@@ -46,11 +41,10 @@ public class Solution {
             }
           }
         }
-//        debug(string(AHash));
-//        debug(string(total));
+        //        debug(string(AHash));
+        //        debug(string(total));
         debug(string(A.substring(left, right + 1)));
-        if (right + 1 < chs.length)
-        right++;
+        if (right + 1 < chs.length) right++;
       }
 
       right--;
@@ -60,8 +54,7 @@ public class Solution {
         int ch = of(chs[left]);
         if (fin[ch]) {
           freq[ch]++;
-          if (freq[ch] == 0 || freq[ch] == 1)
-            total++;
+          if (freq[ch] == 0 || freq[ch] == 1) total++;
           AHash = hashChange(pows, AHash, chs[left], -1);
           if (AHash == BHash) {
             found = true;
@@ -71,15 +64,14 @@ public class Solution {
             }
           }
         }
-//        debug(string(AHash));
+        //        debug(string(AHash));
         debug(string(A.substring(left, right + 1)));
         left++;
       }
       if (left < chs.length) {
         int ch = of(chs[left]);
         freq[ch]++;
-        if (freq[ch] == 0 || freq[ch] == 1)
-          total++;
+        if (freq[ch] == 0 || freq[ch] == 1) total++;
         AHash = hashChange(pows, AHash, chs[left], -1);
         if (AHash == BHash) {
           found = true;
@@ -119,16 +111,14 @@ public class Solution {
 
   private long hashed(int[] freq, long[] powers) {
     long hash = 0;
-    for (int i = 0; i < freq.length; i++)
-      hash = (hash + ((long) freq[i] * powers[i]) % MOD) % MOD;
+    for (int i = 0; i < freq.length; i++) hash = (hash + ((long) freq[i] * powers[i]) % MOD) % MOD;
     return hash;
   }
 
   private long[] powers() {
     long[] res = new long[52];
     res[0] = 1;
-    for (int i = 1; i < 52; i++)
-      res[i] = (res[i - 1] * 52) % MOD;
+    for (int i = 1; i < 52; i++) res[i] = (res[i - 1] * 52) % MOD;
     return res;
   }
 
