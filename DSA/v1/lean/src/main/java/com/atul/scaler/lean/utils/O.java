@@ -24,8 +24,16 @@ public class O {
     debug(val ? "T" : "F");
   }
 
+  public static void debugN() {
+    debugN("");
+  }
+
+  public static void debugN(String text) {
+    debug(text + "\n");
+  }
+
   public static void debug(String text) {
-    print(text);
+    debug(text, true);
   }
 
   public static void debug(String text, boolean append) {

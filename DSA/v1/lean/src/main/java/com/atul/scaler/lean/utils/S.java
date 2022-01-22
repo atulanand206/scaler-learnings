@@ -16,6 +16,10 @@ public class S {
     return String.format("%" + 32 + "s ", Long.toBinaryString(val));
   }
 
+  public static String string(int[] array, int s, int e) {
+    return string(Arrays.stream(array).skip(s).limit(e - s + 1).toArray());
+  }
+
   public static String string(int[] array) {
     StringBuilder sb = new StringBuilder();
     openingBracket(sb);

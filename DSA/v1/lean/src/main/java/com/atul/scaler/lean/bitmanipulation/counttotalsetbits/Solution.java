@@ -1,5 +1,7 @@
 package com.atul.scaler.lean.bitmanipulation.counttotalsetbits;
 
+import static com.atul.scaler.lean.utils.O.*;
+
 import java.util.Arrays;
 
 /**
@@ -36,5 +38,34 @@ public class Solution {
 
   public int countOnes(String str) {
     return (int) Arrays.stream(str.split("")).filter(ch -> ch.equals("1")).count();
+  }
+
+  public static int setBits(int A) {
+    int ans = 0;
+    for (int i = 0; i < 32; i++) {
+      int a = ((A + 1) / (1 << (i + 1))) * (1 << i);
+      int b = Math.max(0, ((A + 1) % (1 << (i + 1))) - (1 << i));
+      ans += (a % MOD + b % MOD) % MOD;
+    }
+    return ans;
+  }
+
+  public static int setBits2(int A) {
+    long ans = 0;
+    for (int i = 0; i < 32; i++) {
+      if ((A & (1 << i)) > 0) {
+        int x = i;
+        x = x * (1 << (i - 1));
+        ans = (ans + x + 1) % MOD;
+        A -= 1 << i;
+        ans = (ans + A) % MOD;
+      }
+    }
+    return (int) (ans % MOD);
+  }
+
+  public static void main(String[] args) {
+    attach();
+    for (int i = 0; i <= 16; i++) debugN(String.format("%6s", Integer.toBinaryString(i)));
   }
 }
