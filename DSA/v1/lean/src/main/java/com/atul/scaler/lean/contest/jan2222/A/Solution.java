@@ -34,8 +34,7 @@ public class Solution {
       debug(string(also));
     }
     for (Map.Entry<Integer, List<Integer>> entry : also.entrySet()) {
-      for (int key : entry.getValue())
-        for (int i : map.get(key)) A[i] = entry.getKey();
+      for (int key : entry.getValue()) for (int i : map.get(key)) A[i] = entry.getKey();
     }
     return A;
   }

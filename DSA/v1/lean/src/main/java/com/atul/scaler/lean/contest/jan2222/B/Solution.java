@@ -13,8 +13,7 @@ public class Solution {
 
   public int solve(int[] a) {
     long[] A = new long[a.length];
-    for (int i = 0; i < A.length; i++)
-      A[i] = a[i];
+    for (int i = 0; i < A.length; i++) A[i] = a[i];
     long ans = 0;
     long subsum = 0;
     for (int i = 0; i < A.length; i++) {
@@ -51,12 +50,12 @@ public class Solution {
     long cnt1 = 0;
     for (int i = 0; i < A.length; i++) {
       long x = 0;
-      x += findJ(map2,A[i] - 1, i);
+      x += findJ(map2, A[i] - 1, i);
       x += findJ(map2, A[i], i);
-      x += findJ(map2,A[i] + 1, i);
+      x += findJ(map2, A[i] + 1, i);
       cnt1 = (cnt1 + x * A[i]) % MOD;
     }
-    ans = (addsum - cnt)  - (subsum - cnt1) % MOD;
+    ans = (addsum - cnt) - (subsum - cnt1) % MOD;
     ans = (ans + MOD) % MOD;
     return (int) ans;
   }

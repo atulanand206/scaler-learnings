@@ -9,6 +9,32 @@ public class Solution {
 
   private static final long MOD = (long) 1E9 + 7;
 
+  public String solve(String A, String B) {
+    if (A.length() < B.length()) return "";
+    int[] hashB = new int[256];
+    int[] hashA = new int[256];
+    for (int i = 0; i < B.length(); i++) hashB[B.charAt(i)]++;
+    int start = 0, startIdx = -1, minLength = Integer.MAX_VALUE;
+    int count = 0;
+    for (int j = 0; j < A.length(); j++) {
+      hashA[A.charAt(j)]++;
+      if (hashA[A.charAt(j)] <= hashB[A.charAt(j)]) count++;
+      if (count == B.length()) {
+        while (hashA[A.charAt(start)] > hashB[A.charAt(start)] || hashB[A.charAt(start)] == 0) {
+          if (hashA[A.charAt(start)] > hashB[A.charAt(start)]) hashA[A.charAt(start)]--;
+          start++;
+        }
+        int windowLength = j - start + 1;
+        if (minLength > windowLength) {
+          minLength = windowLength;
+          startIdx = start;
+        }
+      }
+    }
+    if (startIdx == -1) return "";
+    return A.substring(startIdx, startIdx + minLength);
+  }
+
   public String minWindow(String A, String B) {
     long[] pows = powers();
     int[] freq = frequency(B.toCharArray());
@@ -130,6 +156,6 @@ public class Solution {
   public static void main(String[] args) {
     attach();
     Solution s = new Solution();
-    System.out.println(s.minWindow("ADOBECODEBANC", "ABC"));
+    System.out.println(s.solve("ADOBECODEBANC", "ABC"));
   }
 }

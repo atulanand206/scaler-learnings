@@ -1,10 +1,9 @@
 package com.atul.scaler.lean.strings.boringsubstring;
 
-import com.atul.scaler.lean.utils.O;
-import com.atul.scaler.lean.utils.S;
-
 import static com.atul.scaler.lean.utils.O.debug;
 import static com.atul.scaler.lean.utils.S.string;
+
+import com.atul.scaler.lean.utils.O;
 
 /** @author atulanand */
 public class Solution {
