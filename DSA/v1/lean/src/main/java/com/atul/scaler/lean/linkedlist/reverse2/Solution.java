@@ -17,9 +17,7 @@ public class Solution {
 
     @Override
     public String toString() {
-      return "ListNode{" +
-              "val=" + val +
-              '}';
+      return "ListNode{" + "val=" + val + '}';
     }
   }
 
@@ -37,9 +35,9 @@ public class Solution {
     if (first) curr = ptr;
     ListNode head = ptr;
     ListNode tail = curr;
-    print("head",  head);
-    print("curr",  curr);
-    print("A",  A);
+    print("head", head);
+    print("curr", curr);
+    print("A", A);
     int c = 0;
     while (C >= 0) {
       if (C == 0 && curr.next == null) last = true;
@@ -55,7 +53,7 @@ public class Solution {
     debug(string(last));
     ListNode x = head.next;
     print("A", A);
-    print("head",  head);
+    print("head", head);
     if (x != null) print("X", x);
     if (first) A = prev;
     else head.next = prev;
@@ -87,7 +85,7 @@ public class Solution {
         new int[] {63, 89, 34, 82, 95, 4, 70, 14, 41, 38, 83, 49, 32, 68, 56, 99, 52, 33, 54},
         13,
         15);
-    extracted(83, new int[] {13 , 21 , 72 }, 1, 4);
+    extracted(83, new int[] {13, 21, 72}, 1, 4);
   }
 
   private static void extracted(int start, int[] arr, int B, int C) {

@@ -2,8 +2,7 @@ package com.atul.scaler.lean.strings.periodofstring;
 
 import static com.atul.scaler.lean.utils.O.attach;
 
-import com.atul.scaler.lean.utils.O;
-import com.atul.scaler.lean.utils.S;
+import java.util.Arrays;
 
 /** @author atulanand */
 public class Solution {
@@ -13,11 +12,13 @@ public class Solution {
   }
 
   private int lastZForFirstA(char[] A, int[] z) {
-    int cnt = 0;
-    for (int i = z.length - 1; i >= 0; i--) {
-      if (A[i] == A[0]) return z[i];
+    if (Arrays.stream(z).filter(x -> x == 0).count() == 0) return 1;
+    for (int i = 1; i < z.length; i++) {
+      if (i + z[i] == z.length) {
+        return i;
+      }
     }
-    return cnt;
+    return z[0];
   }
 
   private int[] zArray(String str) {
@@ -34,7 +35,6 @@ public class Solution {
         end = j - 1;
       }
     }
-    O.debug(S.string(z));
     return z;
   }
 
@@ -48,5 +48,8 @@ public class Solution {
     attach();
     System.out.println(new Solution().solve("abababab"));
     System.out.println(new Solution().solve("aadabcabc"));
+    System.out.println(new Solution().solve("aaaa"));
+    System.out.println(new Solution().solve("abcaabcaab"));
+    System.out.println(new Solution().solve("abababababb"));
   }
 }
